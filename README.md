@@ -3,7 +3,7 @@
 
 ## Assembly
 - [Trimmomatic](https://github.com/usadellab/Trimmomatic)
-- [Guppy](https://gist.github.com/disulfidebond/00ff5a6f84a0a81057c6e5817c540569)
+- [Guppy](https://nanoporetech.com/community) - need account to download
 - [Flye](https://github.com/fenderglass/Flye)
 - [homopolish](https://github.com/ythuang0522/homopolish)
 - [Prokka](https://github.com/tseemann/prokka)
