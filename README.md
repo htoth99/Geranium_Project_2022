@@ -83,6 +83,24 @@ for i in $(ls <input_dir>*fastq.gz | grep "_R1" | cut -f 1 -d "_"); do N=$(basen
 ${i}_R1.fastq ${i}_R2.fastq;done
 ```
 ## Kaiju
+```bash
 cd <PATH>/kaiju/bin
-./kaiju-mkbwt -n 5 -a <protein_input?> -o <output_dir>
-
+./kaiju-mkbwt -n 5 -a ACDEFGHIKLMNPQRSTVWY -o <output_dir> <fasta_path>
+./kaiju-mkfmi <output_dir>
+for i in $(ls <raw_data_dir>*.fastq | grep "_R1" | cut -f 1 -d "_");do N=$(basename $i .fastq);\
+./kaiju -t /users/PAS1552/veroman/epidemiology/kaiju/proteinsall/nodes.dmp \***
+-f <output_dir>.fmi \
+-i ${i}_R1.fastq -j ${i}_R2.fastq -o <kaiju_output_dir>$N.out -v -s 60 -e 10 -m 20;done
+```
+## Krona
+```bash
+#change kaiju files into kraken files
+for i in <kraken_output_dir>*.out;do N=$(basename $i .out); \
+./kaiju2krona -i $i -o <kraken_output_dir>/$N.krona \
+-t /proteins/nodes.dmp \
+-n /kaiju/proteins/names.dmp;done
+#change krona files into html
+cd <krona_bin_location>
+for i in <kaiju_output_dir>*.krona;do N=$(basename $i .krona); \
+./ktImportText -o <krona_output_dir>$N.html $i;done
+```
