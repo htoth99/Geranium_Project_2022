@@ -23,6 +23,26 @@ Please download or obtain access to following before assembly and analysis
 - fasttree
 - iqtree
 
+## Generating core SNPs-based phylogeny
+
+The pipeline for generation of core SNP alignment is available from 
+[rknx/prok-snptree](https://github.com/rknx/prok-snptree/tree/Xhp).
+
+The following tools and scripts were used for generating dated phylogeny
+and distance matrix from raw reads:
+
+| Function | Tools/scripts |
+| --- | --- |
+| Quality check for raw reads | **FᴀsᴛQC** ⇨ [src](https://github.com/s-andrews/FastQC) · [web](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) <br /> **MᴜʟᴛɪQC** ⇨ [src](https://github.com/ewels/MultiQC) · [ref](http://dx.doi.org/10.1093/bioinformatics/btw354) · [web](https://multiqc.info/) |
+| Adapter identification and trimming | **ᴄᴜᴛᴀᴅᴀᴘᴛ** ⇨ [src](https://github.com/marcelm/cutadapt/) · [ref](http://dx.doi.org/10.14806/ej.17.1.200) <br /> **ᴛʀɪᴍ_ɢᴀʟᴏʀᴇ** ⇨ [src](https://github.com/FelixKrueger/TrimGalore) · [ref](https://doi.org/10.5281/zenodo.5127899) · [web](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/) |
+| Genome indexing and read alignment | **ʙᴡᴀ** ⇨ [src](https://github.com/lh3/bwa) · [ref](https://doi.org/10.1093/bioinformatics/btp324) · [ref](https://doi.org/10.48550/arXiv.1303.3997) · [web](https://bio-bwa.sourceforge.net/) |
+| Binary conversion and sorting | **Sᴀᴍᴛᴏᴏʟs** ⇨ [src](https://github.com/samtools/samtools) · [ref](https://doi.org/10.1093/bioinformatics/btp352) · [ref](https://doi.org/10.1093/gigascience/giab008) · [web](http://www.htslib.org/) |
+| Variant calling and selection | **GATK** ⇨ [src](https://github.com/broadinstitute/gatk) · [ref](http://dx.doi.org/10.1038/ng.806) · [web](https://gatk.broadinstitute.org/) |
+| SNP filtration and alignment | In-house code implemented in <br /> [rknx/prok-snptree](https://github.com/rknx/prok-snptree/tree/Xhp) |
+| Dated phylogeny | **BEAST** ⇨ [src](https://github.com/beast-dev/beast-mcmc) · [ref](https://doi.org/10.1093/ve/vey016) · [web](https://beast.community/) |
+| Core SNP matrix for PCA | **ʀ/ᴀᴅᴇɢᴇɴᴇᴛ** ⇨ [src](https://github.com/thibautjombart/adegenet) · [ref](https://doi.org/10.1093/bioinformatics/btr521) · [web](http://adegenet.r-forge.r-project.org/) |
+| Pairwise SNP count | **FᴀsᴛᴀTᴏSNPCᴏᴜɴᴛ.sʜ** ⇨ [src](https://gist.github.com/rknx/3d3ad3b93ad963be84d7f2840486e07f) |
+
 # Illumina assembly
 ## Trimmomatic
 ```bash
