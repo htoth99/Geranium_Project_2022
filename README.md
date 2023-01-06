@@ -89,14 +89,14 @@ flye \
 ## homopolish
 ```bash
 #polishes assembled genome
-homopolish polish -a <input_file> -g Xanthomonas -m /homopolish/R9.4.pkl -d -o <output_dir>
+homopolish polish -a <input_file> -g Xanthomonas -m R9.4.pkl -d -o <output_dir>
 ```
 # Metagenome Analysis
 ## Kraken
 ```bash
 cd /kraken2/kraken2-2.1.2/
 for i in $(ls <input_dir>*fastq.gz | grep "_R1" | cut -f 1 -d "_"); do N=$(basename $i .fastq.gz); \
-./kraken2-2.1.2/kraken2 --db <kraken_db> --gzip-compressed \
+./kraken2 --db <kraken_db> --gzip-compressed \
 --paired \
 --report <output_dir>/$N.kreport \
 --output <output_dir>/$N.kraken \
@@ -108,7 +108,7 @@ cd <PATH>/kaiju/bin
 ./kaiju-mkbwt -n 5 -a ACDEFGHIKLMNPQRSTVWY -o <output_dir> <fasta_path>
 ./kaiju-mkfmi <output_dir>
 for i in $(ls <raw_data_dir>*.fastq | grep "_R1" | cut -f 1 -d "_");do N=$(basename $i .fastq);\
-./kaiju -t /users/PAS1552/veroman/epidemiology/kaiju/proteinsall/nodes.dmp \***
+./kaiju -t nodes.dmp \***
 -f <output_dir>.fmi \
 -i ${i}_R1.fastq -j ${i}_R2.fastq -o <kaiju_output_dir>$N.out -v -s 60 -e 10 -m 20;done
 ```
@@ -117,8 +117,8 @@ for i in $(ls <raw_data_dir>*.fastq | grep "_R1" | cut -f 1 -d "_");do N=$(basen
 #change kaiju files into kraken files
 for i in <kraken_output_dir>*.out;do N=$(basename $i .out); \
 ./kaiju2krona -i $i -o <kraken_output_dir>/$N.krona \
--t /proteins/nodes.dmp \
--n /kaiju/proteins/names.dmp;done
+-t nodes.dmp \
+-n names.dmp;done
 #change krona files into html
 cd <krona_bin_location>
 for i in <kaiju_output_dir>*.krona;do N=$(basename $i .krona); \
